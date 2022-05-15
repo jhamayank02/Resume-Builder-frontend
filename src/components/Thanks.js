@@ -2,7 +2,7 @@ import React from 'react'
 import done from '../done.png'
 import '../css/Thanks.css'
 
-export default function Thanks(props) {
+export default function Thanks() {
 
   const goToHome = ()=>{
     window.location.replace("https://resumegenerator00.herokuapp.com/");

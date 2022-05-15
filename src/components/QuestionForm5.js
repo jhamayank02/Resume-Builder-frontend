@@ -7,7 +7,7 @@ import '../css/QuestionForm.css'
 
 export default function QuestionForm5(props) {
 
-    let { prevPage, nextPage, projects, setProjects, page, createResume } = props;
+    let { prevPage, projects, setProjects, createResume } = props;
     const [addCount, setAddCount] = useState(0)
 
     const onChange = (e) => {
