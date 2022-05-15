@@ -77,6 +77,7 @@ export default function Home() {
 
     const createResume = ()=>{
         setLoading(1)
+        console.log("Fetching")
         let url = 'https://resumegenerator02.herokuapp.com/createresume';
         let data = detailsObj;
 
@@ -96,6 +97,7 @@ export default function Home() {
           a.click();
         });
         setLoading(2)
+        console.log("Fetched")
     }
 
 
