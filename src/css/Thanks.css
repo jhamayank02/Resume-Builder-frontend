@@ -1,0 +1,38 @@
+.mainContainer{
+    background-image: linear-gradient(to bottom right, #1dffe0, #e400ff);
+    min-height: 100vh;
+}
+
+.thanks img{
+    height: 100px;
+    /* margin: auto; */
+    /* width: 5%; */
+    margin-top: 40px;
+    border: 4px solid #139e1c;
+    border-radius: 50%;
+    padding: 24px;
+}
+
+.thanks{
+    background-color: white;
+    width: 50%;
+    margin: 40px auto;
+    border-radius: 7px;
+    height: 50vh;
+    text-align: center;
+}
+
+.text{
+    margin-top: 10px;
+    font-size: 22px;
+}
+
+
+@media screen and (max-width: 518px) {
+    .thanks{
+        width: auto;
+        margin: 20px auto;
+        border-radius: 7px;
+        height: 40vh;
+    }
+}

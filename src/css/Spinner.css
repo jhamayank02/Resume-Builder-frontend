@@ -1,0 +1,33 @@
+.mainContainer{
+    background-image: linear-gradient(to bottom right, #1dffe0, #e400ff);
+    min-height: 100vh;
+}
+
+.spinner img{
+    height: 33px;
+    margin-top: 120px;
+}
+
+.spinner{
+    background-color: white;
+    width: 50%;
+    margin: 40px auto;
+    border-radius: 7px;
+    height: 50vh;
+    text-align: center;
+}
+
+.text{
+    margin-top: 10px;
+    font-size: 22px;
+}
+
+
+@media screen and (max-width: 518px) {
+    .spinner{
+        width: auto;
+        margin: 20px auto;
+        border-radius: 7px;
+        height: 40vh;
+    }
+}

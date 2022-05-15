@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import '../css/QuestionForm1.css'
+import '../css/QuestionForm.css'
 
 export default function QuestionForm3(props) {
 
@@ -23,14 +23,18 @@ export default function QuestionForm3(props) {
   return (
     <>
             <h3 className="heading">Skills({addCount})</h3>
+
+            <div className="formContainer">
                 <div className="row">
                     <label htmlFor="skill">Skill</label>
                     <input type="text" id='skill' name="skill" placeholder='Enter your skill' onChange={onChange} />
                 </div>
                 
-                <div className="btnContainer">
+                <div className="addBtnContainer">
                     <button className="btn" onClick={addFunc}>+ Add</button>
                 </div>
+            </div>
+                
 
                 <div className="buttons">
                 <button className="btn" onClick={prevPage}>Previous</button>

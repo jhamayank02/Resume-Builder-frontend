@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import '../css/QuestionForm1.css'
+import '../css/QuestionForm.css'
 
 export default function QuestionForm4(props) {
 
@@ -26,16 +26,18 @@ export default function QuestionForm4(props) {
   return (
     <>
             <h3 className="heading">Work Experience</h3>
-
-                <div className="row">
+                <div className="formContainer">
+                    <div className="row">
                     <label htmlFor="organization">Previous works({addCount})</label>
                     <input type="text" id='organization' name="organization" placeholder='Enter name of the organization' onChange={onChange} />
                     <input type="text" id="summary" name="summary" placeholder='Enter description' onChange={onChange} />
                 </div>
                 
-                <div className="btnContainer">
+                <div className="addBtnContainer">
                     <button className="btn" onClick={addFunc}>+ Add</button>
                 </div>
+                </div>
+                
 
                 <div className="buttons">
                 <button className="btn" onClick={prevPage}>Previous</button>

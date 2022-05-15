@@ -6,16 +6,21 @@ import QuestionForm3 from '../components/QuestionForm3';
 import QuestionForm4 from '../components/QuestionForm4';
 import QuestionForm5 from '../components/QuestionForm5';
 import {
-    BrowserRouter,
     Routes,
     Route,
     useNavigate,
 } from "react-router-dom";
-
+import Spinner from './Spinner';
+import Thanks from './Thanks';
 
 export default function Home() {
 
     const [page, setPage] = useState(1)
+
+    const [loading, setLoading] = useState(0)
+    // 0 -> not loading
+    // 1 -> loading
+    // 2 -> downloaded
 
     const [basicDetails, setBasicDetails] = useState({
         name: '',
@@ -43,8 +48,6 @@ export default function Home() {
             'projects': projects
     }
 
-    console.log(detailsObj);
-
     const navigate = useNavigate();
     
     const prevPage = ()=>{
@@ -67,20 +70,41 @@ export default function Home() {
             setPage(page);
         }
         else{
-            console.log(page)
             navigate(`/qf${page+1}`);
             setPage(page+1);
         }
+    }
+
+    const createResume = ()=>{
+        setLoading(1)
+        let url = 'https://resumegenerator02.herokuapp.com/createresume';
+        let data = detailsObj;
+
+        let params = {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+
+        fetch(url, params).then((res) => { return res.blob(); })
+        .then((data) => {
+          var a = document.createElement("a");
+          a.href = window.URL.createObjectURL(data);
+          a.download = "FILENAME";
+          a.click();
+        });
+        setLoading(2)
     }
 
 
     return (
         <div className='mainContainer'>
             <div className="container">
-                {/* <BrowserRouter> */}
-                    <Routes>
+                {loading===0 && <Routes>
 
-                        <Route exact  path="/" element={<QuestionForm1 page={page} setPage={setPage} prevPage={prevPage} nextPage={nextPage} setBasicDetails={setBasicDetails} basicDetails={basicDetails} />} />
+                        <Route exact  path="/" element={<QuestionForm1 page={page} setPage={setPage} prevPage={prevPage} nextPage={nextPage} setBasicDetails={setBasicDetails} basicDetails={basicDetails} createResume={createResume} />} />
 
                         <Route  exact path="/qf2" element={<QuestionForm2 page={page} setPage={setPage} prevPage={prevPage} nextPage={nextPage} educationDetails={educationDetails} setEducationDetails={setEducationDetails} />} />
 
@@ -88,10 +112,13 @@ export default function Home() {
 
                         <Route  exact path="/qf4" element={<QuestionForm4 page={page} setPage={setPage} prevPage={prevPage} nextPage={nextPage} workExperience={workExperience} setWorkExperience={setWorkExperience} />} />
 
-                        <Route  exact path="/qf5" element={<QuestionForm5 page={page} setPage={setPage} prevPage={prevPage} nextPage={nextPage} projects={projects} setProjects={setProjects} />} />
+                        <Route  exact path="/qf5" element={<QuestionForm5 page={page} setPage={setPage} prevPage={prevPage} nextPage={nextPage} projects={projects} setProjects={setProjects}  createResume={createResume} />} />
                         
-                    </Routes>
-                {/* </BrowserRouter> */}
+                    </Routes>}
+
+                {loading===1 && <Spinner />}
+
+                {loading===2 && <Thanks />}
             </div>
         </div>
     )
